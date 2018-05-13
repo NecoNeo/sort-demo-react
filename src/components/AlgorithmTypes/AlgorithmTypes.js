@@ -1,11 +1,34 @@
 import React, { Component } from 'react';
 import './AlgorithmTypes.css';
 
-import { insertionSort } from './../../algorithms/insertionSort.js'
+import AlgorithmWorker from '../../AlgorithmWorker/AlgorithmWorker';
+import { insertionSort } from './../../algorithms/insertionSort';
 
 class AlgorithmTypes extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      // arrayData: [5,6,3,1,4,2,8,9,7,0]
+      arrayData: (new Array(100000)).fill(0).map((v, i, array) => array.length - i)
+    };
+    this.initData();
+    // this.initDataBlock();
+  }
+
+  initData() {
+    const algorithmWorker = new AlgorithmWorker(insertionSort, result => {
+      this.setState({ arrayData: result });
+    });
+    algorithmWorker.startAlgorithm(this.state.arrayData);
+  }
+
+  initDataBlock() {
+    this.setState({ arrayData: insertionSort(this.state.arrayData) });
+  }
+
   render() {
-    return <div class="AlgorithmTypes">{insertionSort([5,2,3,1,4,0])}</div>
+    return <div className="AlgorithmTypes">{this.state.arrayData.toString()}</div>
   }
 }
 

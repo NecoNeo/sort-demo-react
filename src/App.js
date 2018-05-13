@@ -4,6 +4,7 @@ import './App.css';
 
 import AlgorithmTypes from './components/AlgorithmTypes/AlgorithmTypes.js'
 
+
 class App extends Component {
   render() {
     return (
