@@ -10,6 +10,7 @@ class AlgorithmWorker {
   constructor(algorithm, callback) {
     // this.algorithm = algorithm;
     this.callback = callback;
+    console.log(Worker);
     this.worker = new Worker();
     this.worker.onmessage = event => {
       this.onmessageHandler(event);
