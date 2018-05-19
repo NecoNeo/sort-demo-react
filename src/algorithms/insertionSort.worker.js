@@ -5,12 +5,20 @@ function insertionSort(array) {
     return array;
   }
   for (let i = 1; i < array.length; i++) {
-    for (let j = i; j > 0 && array[j - 1] > array[j]; j--) {
-      let temp = array[j];
+    let j = i;
+    let temp = array[j];
+    for (; j > 0 && array[j - 1] > temp; j--) {
       array[j] = array[j - 1];
-      array[j - 1] = temp;
     }
+    array[j] = temp;
   }
+
+  // low performance
+  // for (let i = 1; i < array.length; i++) {
+  //   for (let j = i; j > 0 && array[j - 1] > array[j]; j--) {
+  //     [array[j], array[j - 1]] = [array[j - 1], array[j]];
+  //   }
+  // }
   return array;
 }
 
