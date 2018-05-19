@@ -32,8 +32,11 @@ class AlgorithmWorker {
   onmessageHandler(event) {
     if (event.data.messageType === 'finished') {
       this.endDate = new Date();
-      console.log('elapsed time: ', this.endDate.getTime() - this.startDate.getTime(), 'ms');
-      this.callback(event.data.result);
+      // console.log('elapsed time: ', this.endDate.getTime() - this.startDate.getTime(), 'ms');
+      this.callback({
+        result: event.data.result,
+        elapsedTime: this.endDate.getTime() - this.startDate.getTime()
+      });
     }
   }
 }
