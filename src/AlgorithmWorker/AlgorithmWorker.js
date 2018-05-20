@@ -1,16 +1,20 @@
-import Worker from '../algorithms/insertionSort.worker.js';
+import nativeWorker from '../algorithms/native.worker.js';
+import insertionSortWorker from '../algorithms/insertionSort/insertionSort.worker.js';
+import quickSortWorker from '../algorithms/quickSort/quickSort.worker.js'
 
 
 class AlgorithmWorker {
 
-  processing = false;
-  startDate = null;
-  endDate = null;
+  static workers = {
+    USE_JS_BUILT_IN_SORT: nativeWorker,
+    INSERTION_SORT: insertionSortWorker,
+    QUICK_SORT: quickSortWorker
+  };
 
-  constructor(algorithm, callback) {
-    // this.algorithm = algorithm;
+  processing = false;
+
+  constructor(Worker, callback) {
     this.callback = callback;
-    console.log(Worker);
     this.worker = new Worker();
     this.worker.onmessage = event => {
       this.onmessageHandler(event);
@@ -19,7 +23,6 @@ class AlgorithmWorker {
 
   startAlgorithm(array) {
     if (this.processing) return;
-    this.startDate = new Date();
     this.worker.postMessage({
       array: array
     });
@@ -31,11 +34,9 @@ class AlgorithmWorker {
 
   onmessageHandler(event) {
     if (event.data.messageType === 'finished') {
-      this.endDate = new Date();
-      // console.log('elapsed time: ', this.endDate.getTime() - this.startDate.getTime(), 'ms');
       this.callback({
         result: event.data.result,
-        elapsedTime: this.endDate.getTime() - this.startDate.getTime()
+        elapsedTime: event.data.elapsedTime
       });
     }
   }

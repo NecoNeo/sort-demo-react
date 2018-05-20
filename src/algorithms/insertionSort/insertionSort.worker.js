@@ -25,5 +25,12 @@ function insertionSort(array) {
 // Worker
 
 onmessage = function(event) {
-  postMessage({messageType: 'finished', result: insertionSort(event.data.array)});
+  const startDate = new Date();
+  const result = insertionSort(event.data.array);
+  const elapsedTime = (new Date()) - startDate;
+  postMessage({
+    messageType: 'finished',
+    result,
+    elapsedTime
+  });
 }

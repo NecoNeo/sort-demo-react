@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './AlgorithmTypes.css';
 
 import AlgorithmWorker from '../../AlgorithmWorker/AlgorithmWorker';
-import { insertionSort } from './../../algorithms/insertionSort';
+
+import { quickSort } from '../../algorithms/quickSort/quickSort'
 
 class AlgorithmTypes extends Component {
 
@@ -17,10 +18,11 @@ class AlgorithmTypes extends Component {
 
   componentDidMount() {
     this.initData();
+    quickSort((new Array(100)).fill(0));
   }
 
   initData() {
-    const algorithmWorker = new AlgorithmWorker(insertionSort, data => {
+    const algorithmWorker = new AlgorithmWorker(AlgorithmWorker.workers.QUICK_SORT, data => {
       this.setState({
         arrayData: data.result,
         status: 'finished',
@@ -33,10 +35,6 @@ class AlgorithmTypes extends Component {
     algorithmWorker.startAlgorithm(this.state.arrayData);
   }
 
-  initDataBlock() {
-    this.setState({ arrayData: insertionSort(this.state.arrayData) });
-  }
-
   render() {
     return (
       <div className="AlgorithmTypes">
@@ -47,7 +45,9 @@ class AlgorithmTypes extends Component {
         <div>
           <span>Elapsed Time: </span>
           <span>{this.state.elapsedTime}ms</span>
-          {/* {this.state.arrayData.toString()} */}
+        <div>
+          {this.state.arrayData.toString()}
+        </div>
         </div>
       </div>
     );
