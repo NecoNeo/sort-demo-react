@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './AlgorithmTypes.css';
+import './AlgorithmTypes.scss';
 
 import AlgorithmWorker from '../../AlgorithmWorker/AlgorithmWorker';
 
