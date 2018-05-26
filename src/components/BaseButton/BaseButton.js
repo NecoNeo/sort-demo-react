@@ -15,9 +15,9 @@ class BaseButton extends Component {
   render() {
     let className = 'base-button';
     if (this.props.type === 'danger') {
-      className = className + ' ' + 'danger';
+      className += ' danger';
     } else if (this.props.type === 'disabled') {
-      className = className + ' ' + 'disabled';
+      className += ' disabled';
     }
     return (
       <button className={className} onClick={this.handleClick}>
