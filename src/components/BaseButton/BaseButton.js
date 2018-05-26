@@ -3,6 +3,11 @@ import './BaseButton.scss';
 
 class BaseButton extends Component {
 
+  static classNameTypes = {
+    DANGER: 'danger',
+    DISABLED: 'disabled'
+  }
+
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -12,15 +17,20 @@ class BaseButton extends Component {
     this.props.onClick(e);
   }
 
-  render() {
+  getClassName() {
     let className = 'base-button';
-    if (this.props.type === 'danger') {
-      className += ' danger';
-    } else if (this.props.type === 'disabled') {
-      className += ' disabled';
+    for (const type in BaseButton.classNameTypes) {
+      if (BaseButton.classNameTypes[type] === this.props.type) {
+        className += ' ' + BaseButton.classNameTypes[type];
+        break;
+      }
     }
+    return className;
+  }
+
+  render() {
     return (
-      <button className={className} onClick={this.handleClick}>
+      <button className={this.getClassName()} onClick={this.handleClick}>
         {this.props.children}
       </button>
     );
