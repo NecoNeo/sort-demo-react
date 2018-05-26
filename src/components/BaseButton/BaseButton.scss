@@ -1,0 +1,21 @@
+.base-button {
+  margin: 1em 2em;
+  padding: 0.3em 2em;
+  border: 1px solid rgba(0, 0, 0, .1);
+  background-color: #0579c7;
+  background-image: linear-gradient(rgba(255, 255, 255, .3), transparent);
+  border-radius: .25em;
+  box-shadow: .1em .1em 1em #888;
+  color: #fff;
+  text-shadow: 0 .05em #335166;
+  font-size: 125%;
+  line-height: 1.5;
+
+  &.danger {
+    background-color: #f00;
+  }
+  &.disabled {
+    background-color: #999;
+    color: #ddd;
+  }
+}

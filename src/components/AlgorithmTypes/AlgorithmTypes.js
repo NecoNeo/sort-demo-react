@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './AlgorithmTypes.scss';
 
 import AlgorithmWorker from '../../AlgorithmWorker/AlgorithmWorker';
-
-import { quickSort } from '../../algorithms/quickSort/quickSort'
+import BaseButton from '../BaseButton/BaseButton';
 
 class AlgorithmTypes extends Component {
 
@@ -14,15 +13,20 @@ class AlgorithmTypes extends Component {
       status: 'idle',
       elapsedTime: 0,
     };
+    this.startAlgorithm = this.startAlgorithm.bind(this);
   }
 
   componentDidMount() {
     this.initData();
-    quickSort((new Array(100)).fill(0));
   }
 
   initData() {
-    const algorithmWorker = new AlgorithmWorker(AlgorithmWorker.workers.QUICK_SORT, data => {
+    this.startAlgorithm();
+  }
+
+  startAlgorithm() {
+    if (this.state.status === 'sorting') return;
+    let algorithmWorker = new AlgorithmWorker(AlgorithmWorker.workers.QUICK_SORT, data => {
       this.setState({
         arrayData: data.result,
         status: 'finished',
@@ -38,6 +42,9 @@ class AlgorithmTypes extends Component {
   render() {
     return (
       <div className="AlgorithmTypes">
+        <div>
+          <BaseButton onClick={this.startAlgorithm} type={(this.state.status === 'sorting') ? 'disabled': ''}>Hello</BaseButton>
+        </div>
         <div>
           <span>Status: </span>
           <span>{this.state.status}</span>
