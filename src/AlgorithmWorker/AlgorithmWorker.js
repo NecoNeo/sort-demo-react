@@ -11,33 +11,36 @@ class AlgorithmWorker {
     QUICK_SORT: quickSortWorker
   };
 
-  processing = false;
+  _processing = false;
+  _distroyed = false;
 
   constructor(Worker, callback) {
-    this.callback = callback;
-    this.worker = new Worker();
-    this.worker.onmessage = event => {
-      this.onmessageHandler(event);
+    this._callback = callback;
+    this._worker = new Worker();
+    this._worker.onmessage = event => {
+      this._onmessageHandler(event);
     };
   }
 
   startAlgorithm(array) {
-    if (this.processing) return;
-    this.worker.postMessage({
+    if (this._processing || this._distroyed) return;
+    this._worker.postMessage({
       array: array
     });
   }
 
-  stopAlgorithm() {
-    this.worker.terminate();
+  destroy() {
+    this._distroyed = true;
+    this._worker.terminate();
   }
 
-  onmessageHandler(event) {
+  _onmessageHandler(event) {
     if (event.data.messageType === 'finished') {
-      this.callback({
+      this._callback({
         result: event.data.result,
         elapsedTime: event.data.elapsedTime
       });
+      this.destroy();
     }
   }
 }
