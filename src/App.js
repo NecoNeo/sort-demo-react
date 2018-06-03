@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
-import AlgorithmTypes from './components/AlgorithmTypes/AlgorithmTypes.js'
+import AlgorithmTypes from './components/AlgorithmTypes/AlgorithmTypes.js';
+import NavItems from './components/NavItems/NavItems.js';
 
 
 class App extends Component {
@@ -13,9 +14,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">SORT DEMO under construction...</h1>
         </header>
-        <p className="App-intro">
+        {/* <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        </p> */}
+        <div className="left-container">
+          <NavItems />
+        </div>
         <AlgorithmTypes />
       </div>
     );

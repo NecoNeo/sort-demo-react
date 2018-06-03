@@ -53,7 +53,7 @@ class AlgorithmTypes extends Component {
           <span>Elapsed Time: </span>
           <span>{this.state.elapsedTime}ms</span>
         <div>
-          {this.state.arrayData.toString()}
+          {/* {this.state.arrayData.toString()} */}
         </div>
         </div>
       </div>
