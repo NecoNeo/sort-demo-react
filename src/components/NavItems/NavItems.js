@@ -5,7 +5,8 @@ class NavItems extends Component {
   render() {
     return (
       <nav className="nav-items">
-        <div>sort competition</div>
+        <div className="nav-item">single algorithm analysis</div>
+        <div className="nav-item">sort competition</div>
       </nav>
     );
   }

@@ -27,7 +27,10 @@
   to { transform: rotate(360deg); }
 }
 
+.main-container {
+  display: flex;
+}
+
 .left-container {
-  position: absolute;
-  top: 160px;
+  width: 20em;
 }

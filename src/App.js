@@ -17,10 +17,13 @@ class App extends Component {
         {/* <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p> */}
-        <div className="left-container">
-          <NavItems />
+
+        <div className="main-container">
+          <div className="left-container">
+            <NavItems />
+          </div>
+          <AlgorithmTypes />
         </div>
-        <AlgorithmTypes />
       </div>
     );
   }
